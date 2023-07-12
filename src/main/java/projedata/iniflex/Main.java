@@ -10,11 +10,10 @@ public class Main {
 
   public static void main(String[] args) {
 
+    LocalDate nascimentoFuncionario = LocalDate.of(1960, 1, 19);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    LocalDate dataDeNascimento = LocalDate.parse("30/01/1960", formatter);
-    String dataFormatada = dataDeNascimento.format(formatter);
-    Pessoa pessoa1 = new Pessoa("Ana", dataFormatada);
+    Pessoa pessoa1 = new Pessoa("Ana", formatter.format(nascimentoFuncionario));
 
     System.out.println(pessoa1.getNascimento());
 
