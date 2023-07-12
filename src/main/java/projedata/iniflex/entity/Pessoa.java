@@ -1,15 +1,12 @@
 
 package projedata.iniflex.entity;
 
-import java.time.LocalDate;
-
 public class Pessoa {
 
   private String nome;
   private String nascimento;
 
-
-//  nascimento é string apenas para fim de visualização
+  // nascimento é string apenas para fim de visualização
   public Pessoa(String nome, String nascimento) {
     this.nome = nome;
     this.nascimento = nascimento;
@@ -32,5 +29,5 @@ public class Pessoa {
   }
 }
 
-//Exemplo para criar funcionário:
-//Pessoa pessoa1 = new Pessoa("Aluno", LocalDate.of(YYYY, MM, DD));
+// Exemplo para criar funcionário:
+// Pessoa pessoa1 = new Pessoa("Aluno", LocalDate.of(YYYY, MM, DD));
