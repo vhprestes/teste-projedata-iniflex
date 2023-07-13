@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import projedata.iniflex.entity.Funcionario;
 
 public class LeitorCSV {
@@ -15,9 +16,7 @@ public class LeitorCSV {
 
     try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
       String linha = br.readLine();
-      System.out.println("linhaASAAAAAAAAAAAAAAAAAAAAAAAAA   " + linha);
       linha = br.readLine();
-      System.out.println("linhaASAABBBBBBBBBBBBBBBBBBBBBBB   " + linha);
 
       while (linha != null) {
         String[] campos = linha.split(",");
@@ -35,4 +34,6 @@ public class LeitorCSV {
 
     return funcionarios;
   }
+
+
 }
