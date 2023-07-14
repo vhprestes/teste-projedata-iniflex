@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +61,13 @@ public class Principal {
       }
       System.out.println();
     }
+
+//    Chama a função que imprime os funcionarios nascidos nos meses 10 e  12
+    imprimirAniversarios(funcionarios);
+
+//    Req 3.8
+//    Imprime o funcionario mais velho
+    imprimirMaisVelho(funcionarios);
   }
 
   // função que imprime a lista de funcionários
@@ -86,6 +97,7 @@ public class Principal {
     }
   }
 
+
   public static Map<String, List<Funcionario>> agruparPorFuncao(List<Funcionario> funcionarios) {
     Map<String, List<Funcionario>> funcionarioMap = new HashMap<>();
 
@@ -102,4 +114,54 @@ public class Principal {
     return funcionarioMap;
   }
 
+  public static void imprimirAniversarios(List<Funcionario> funcionarios) {
+    System.out.print("funcionarios que fazem aniversario no mes 10 e 12: ");
+    for (Funcionario funcionario : funcionarios) {
+      String aniversarioString = funcionario.getNascimento();
+      LocalDate aniversario = LocalDate.parse(aniversarioString,
+          DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+      int mes = aniversario.getMonthValue();
+      if (mes == 10 || mes == 12) {
+        System.out.print(funcionario.getNome() + " ");
+      }
+    }
+  }
+
+
+  public static Funcionario imprimirMaisVelho(List<Funcionario> funcionarios) {
+    Funcionario maisVelho = funcionarios.get(0);
+    for (Funcionario funcionario : funcionarios) {
+      String dataNascimentoString1 = funcionario.getNascimento();
+      String dataNascimentoString2 = maisVelho.getNascimento();
+      int ano1 = Integer.parseInt(dataNascimentoString1.substring(6, 10));
+      int mes1 = Integer.parseInt(dataNascimentoString1.substring(3, 5));
+      int dia1 = Integer.parseInt(dataNascimentoString1.substring(0, 2));
+      int ano2 = Integer.parseInt(dataNascimentoString2.substring(6, 10));
+      int mes2 = Integer.parseInt(dataNascimentoString2.substring(3, 5));
+      int dia2 = Integer.parseInt(dataNascimentoString2.substring(0, 2));
+      if (ano1 < ano2) {
+        maisVelho = funcionario;
+      } else if (ano1 == ano2) {
+        if (mes1 < mes2) {
+          maisVelho = funcionario;
+        } else if (mes1 == mes2) {
+          if (dia1 < dia2) {
+            maisVelho = funcionario;
+          }
+        }
+      }
+    }
+
+    // Calcula a idade
+    LocalDate dataNascimento = LocalDate.parse(maisVelho.getNascimento(),
+        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    LocalDate dataAtual = LocalDate.now();
+    Period periodo = Period.between(dataNascimento, dataAtual);
+    int idade = periodo.getYears();
+
+    System.out.println(
+        "\nO funcionário mais velho é " + maisVelho.getNome() + " e tem " + idade + " anos.");
+
+    return maisVelho;
+  }
 }
