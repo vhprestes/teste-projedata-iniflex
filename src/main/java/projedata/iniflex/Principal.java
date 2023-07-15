@@ -62,12 +62,24 @@ public class Principal {
       System.out.println();
     }
 
-//    Chama a função que imprime os funcionarios nascidos nos meses 10 e  12
+//  Req 3.8 Chama a função que imprime os funcionarios nascidos nos meses 10 e  12
     imprimirAniversarios(funcionarios);
 
-//    Req 3.8
+//    Req 3.9
 //    Imprime o funcionario mais velho
     imprimirMaisVelho(funcionarios);
+
+// Req 3.10
+//    Imprime a lista de funcionários em ordem alfabetica
+
+    List<Funcionario> ordenados = ordenarPorNome(funcionarios);
+    System.out.println("Lista ordenadas alfabeticamente: ");
+    for (Funcionario f : ordenados) {
+      System.out.println(
+          f.getNome() + " | " + f.getNascimento() + " | "
+              + f.getSalario() + " | "
+              + f.getFuncao());
+    }
   }
 
   // função que imprime a lista de funcionários
@@ -163,5 +175,11 @@ public class Principal {
         "\nO funcionário mais velho é " + maisVelho.getNome() + " e tem " + idade + " anos.");
 
     return maisVelho;
+  }
+
+  public static List<Funcionario> ordenarPorNome(List<Funcionario> funcionarios) {
+    List<Funcionario> ordenados = new ArrayList<>(funcionarios);
+    ordenados.sort((Funcionario f1, Funcionario f2) -> f1.getNome().compareTo(f2.getNome()));
+    return ordenados;
   }
 }
