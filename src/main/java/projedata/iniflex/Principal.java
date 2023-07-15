@@ -83,6 +83,10 @@ public class Principal {
 
 //  req 3.11 - Total Salarios
     System.out.println("O total de salário dos funcionários é:" + totalSalarios(funcionarios));
+
+//  req 3.12 - Total salarios em minimos, funcionario por funcionario
+
+    salarioEmMinimos(funcionarios);
   }
 
   // função que imprime a lista de funcionários
@@ -192,5 +196,14 @@ public class Principal {
       total = total.add(funcionario.getSalario());
     }
     return total;
+  }
+
+  public static void salarioEmMinimos(List<Funcionario> funcionarios) {
+    for (Funcionario funcionario : funcionarios) {
+      System.out.println(funcionario.getNome() + " ganha " + funcionario.getSalario()
+          .divide(BigDecimal.valueOf(1212.00), 0) + " salários mínimos.");
+    }
+
+
   }
 }
