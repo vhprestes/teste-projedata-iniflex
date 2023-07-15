@@ -80,6 +80,9 @@ public class Principal {
               + f.getSalario() + " | "
               + f.getFuncao());
     }
+
+//  req 3.11 - Total Salarios
+    System.out.println("O total de salário dos funcionários é:" + totalSalarios(funcionarios));
   }
 
   // função que imprime a lista de funcionários
@@ -181,5 +184,13 @@ public class Principal {
     List<Funcionario> ordenados = new ArrayList<>(funcionarios);
     ordenados.sort((Funcionario f1, Funcionario f2) -> f1.getNome().compareTo(f2.getNome()));
     return ordenados;
+  }
+
+  public static BigDecimal totalSalarios(List<Funcionario> funcionarios) {
+    BigDecimal total = BigDecimal.ZERO;
+    for (Funcionario funcionario : funcionarios) {
+      total = total.add(funcionario.getSalario());
+    }
+    return total;
   }
 }
